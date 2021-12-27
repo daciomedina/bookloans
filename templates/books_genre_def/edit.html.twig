@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Género{% endblock %}
+
+{% block body %}
+    <h1>Editar Género</h1>
+
+    {{ include('books_genre_def/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('books_genre_def_index') }}">regresar</a>
+
+    {{ include('books_genre_def/_delete_form.html.twig') }}
+{% endblock %}

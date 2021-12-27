@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.logdate) }}
+    {{ form_row(form.UserDNI) }}
+    {{ form_row(form.UserName) }}
+    {{ form_row(form.UserPhone) }}
+    {{ form_row(form.book_id) }}
+    
+    <button class="btn">{{ button_label|default('Registrar') }}</button>
+    
+{{ form_end(form) }}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BooksLoans{% endblock %}
+
+{% block body %}
+    <h1>BooksLoans</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ books_loan.id }}</td>
+            </tr>
+            <tr>
+                <th>Logdate</th>
+                <td>{{ books_loan.logdate ? books_loan.logdate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Returned</th>
+                <td>{{ books_loan.returned ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UserDNI</th>
+                <td>{{ books_loan.UserDNI }}</td>
+            </tr>
+            <tr>
+                <th>UserName</th>
+                <td>{{ books_loan.UserName }}</td>
+            </tr>
+            <tr>
+                <th>UserPhone</th>
+                <td>{{ books_loan.UserPhone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('books_loans_index') }}">back to list</a>
+
+    <a href="{{ path('books_loans_edit', {'id': books_loan.id}) }}">edit</a>
+
+    {{ include('books_loans/_delete_form.html.twig') }}
+{% endblock %}

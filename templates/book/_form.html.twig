@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+   {{ form_errors(form) }}
+
+    {{ form_row(form.bookName) }}
+    {{ form_row(form.authorName) }}
+    {{ form_row(form.qty) }}
+    {{ form_row(form.bookGenreRel) }}
+    
+    <button class="btn">{{ button_label|default('Guardar') }}</button>
+
+{{ form_end(form) }}

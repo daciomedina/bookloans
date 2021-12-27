@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salida de Libro{% endblock %}
+
+{% block body %}
+    <h1>Registro de Salida de Libro</h1>
+
+    {{ include('books_loans/_form.html.twig') }}
+
+    <a href="{{ path('books_loans_index') }}">regresar</a>
+{% endblock %}

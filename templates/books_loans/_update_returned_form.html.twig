@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('books_loans_returned', {'id': books_loan.id}) }}" onsubmit="return confirm('Se ha entregado este libro?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('update' ~ books_loan.id) }}">
+    <button class="btn">Entrada de Libro</button>
+</form>

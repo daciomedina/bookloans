@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BooksGenreDef index{% endblock %}
+
+{% block body %}
+    <h1>Géneros</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for books_genre_def in books_genre_defs %}
+            <tr>
+                <td>{{ books_genre_def.id }}</td>
+                <td>{{ books_genre_def.Name }}</td>
+                <td>
+                    <a href="{{ path('books_genre_def_show', {'id': books_genre_def.id}) }}">mostrar</a>
+                    <a href="{{ path('books_genre_def_edit', {'id': books_genre_def.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no Hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('books_genre_def_new') }}">Crear</a>
+{% endblock %}

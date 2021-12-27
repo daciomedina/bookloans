@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book{% endblock %}
+
+{% block body %}
+    <h1>Book</h1>
+
+    <form action="{{path('book_search')}}" >
+        <input name="key" type="text" id="key">
+    </form>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ book.id }}</td>
+            </tr>
+            <tr>
+                <th>BookName</th>
+                <td>{{ book.bookName }}</td>
+            </tr>
+            <tr>
+                <th>AuthorName</th>
+                <td>{{ book.authorName }}</td>
+            </tr>
+            <tr>
+                <th>Total Libros en la Bilbioteca</th>
+                <td>{{ book.qty }}</td>
+            </tr>
+            <tr>
+                <th>Total Libros Prestados</th>
+                <td>{{ totalBookLoans }}</td>
+            </tr>
+            <tr>
+                <th>Total Libros Disponibles</th>
+                <td>{{ book.qty - totalBookLoans }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre del Libro</th>
+                <th>Fecha</th>
+                <th>DNI</th>
+                <th>Nombre Completo</th>
+                <th>Teléfono</th>
+                <th>Entregado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+    {% for bookLoan in booksLoans %}
+        <tr>
+            <td>{{ bookLoan.id }}</td>
+            <td>{{ bookLoan.bookId}}</td>
+            <td>{{ bookLoan.logdate ? bookLoan.logdate|date('Y-m-d') : '' }}</td>
+            <td>{{ bookLoan.UserDNI }}</td>
+            <td>{{ bookLoan.UserName }}</td>
+            <td>{{ bookLoan.UserPhone }}</td>
+            <td>{{ bookLoan.returned ? 'Entrega' : 'Salida' }}</td>
+            <td>
+                <a href="{{ path('books_loans_show', {'id': bookLoan.id}) }}">ver</a>
+                {% if not bookLoan.closed %}
+                <a href="{{ path('books_loans_edit', {'id': bookLoan.id}) }}">editar</a>
+                {% endif %}
+                {% if not bookLoan.returned and not bookLoan.closed %}
+                <a href="{{ path('books_loans_returned', {'id':bookLoan.id}) }}">Entrega</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <a href="{{ path('book_index') }}">back to list</a>
+
+    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+
+    {{ include('book/_delete_form.html.twig') }}
+{% endblock %}

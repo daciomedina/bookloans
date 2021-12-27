@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BooksLoans index{% endblock %}
+
+{% block body %}
+    <h1>Movimientos de Libros</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre del Libro</th>
+                <th>Fecha</th>
+                <th>DNI</th>
+                <th>Nombre Completo</th>
+                <th>Teléfono</th>
+                <th>Entregado</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for books_loan in books_loans %}
+            <tr>
+                <td>{{ books_loan.id }}</td>
+                <td>{{ books_loan.bookId}}</td>
+                <td>{{ books_loan.logdate ? books_loan.logdate|date('Y-m-d') : '' }}</td>
+                <td>{{ books_loan.UserDNI }}</td>
+                <td>{{ books_loan.UserName }}</td>
+                <td>{{ books_loan.UserPhone }}</td>
+                <td>{{ books_loan.returned ? 'Entrega' : 'Salida' }}</td>
+                <td>
+                    <a href="{{ path('books_loans_show', {'id': books_loan.id}) }}">ver</a>
+                    {% if not books_loan.closed %}
+                    <a href="{{ path('books_loans_edit', {'id': books_loan.id}) }}">editar</a>
+                    {% endif %}
+                    {% if not books_loan.returned and not books_loan.closed %}
+                    <a href="{{ path('books_loans_returned', {'id':books_loan.id}) }}">Entrega</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('books_loans_new') }}">Nuevo</a>
+{% endblock %}
