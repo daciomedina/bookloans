@@ -5,6 +5,12 @@
 {% block body %}
     <h1>Book index</h1>
 
+    <form action="{{path('book_search')}}" >
+        <label for="key">Buscar
+        <input name="key" type="text" id="key">
+        </label>
+    </form>
+
     <table class="table">
         <thead>
             <tr>
