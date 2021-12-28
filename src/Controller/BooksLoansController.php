@@ -46,10 +46,12 @@ class BooksLoansController extends AbstractController
             ], Response::HTTP_SEE_OTHER);
         }
 
+        $id_book = (($request->query->get("id_book")) ? $request->query->get("id_book"):$request->query->get("id"));
+
         return $this->renderForm('books_loans/new.html.twig', [
             'books_loan' => $booksLoan,
             'form' => $form,
-            'id_book' => $request->query->get("id")
+            'id_book' => $id_book
 
         ]);
     }
@@ -80,9 +82,12 @@ class BooksLoansController extends AbstractController
             ], Response::HTTP_SEE_OTHER);
         }
 
+        $id_book = (($request->query->get("id_book")) ? $request->query->get("id_book"):$request->query->get("id"));
+
         return $this->renderForm('books_loans/edit.html.twig', [
             'books_loan' => $booksLoan,
             'form' => $form,
+            'id_book' => $id_book
         ]);
     }
 
