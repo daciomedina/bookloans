@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Ficha del Libro{% endblock %}
-
+{% set totalLibrosDisponibles = book.qty - totalBookLoans %}
 {% block body %}
     <h1 class="titulo-tabla">Ficha de Libro</h1>
 
@@ -20,7 +20,7 @@
                 <td>{{ book.authorName }}</td>
             </tr>
             <tr>
-                <th>Total Libros en la Bilbioteca</th>
+                <th>Total Libros en la Biblioteca</th>
                 <td>{{ book.qty }}</td>
             </tr>
             <tr>
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <th>Total Libros Disponibles</th>
-                <td>{{ book.qty - totalBookLoans }}</td>
+                <td>{{ totalLibrosDisponibles }}</td>
             </tr>
         </tbody>
     </table>
@@ -39,7 +39,9 @@
         <li><a href="{{ path('book_index') }}">Inicio</a></li>
         <li><a href="{{ path('book_edit', {'id': book.id}) }}">modif. Libro</a></li>
         <li>{{ include('book/_delete_form.html.twig') }}</li>
+        {% if totalLibrosDisponibles > 0 %}
         <li><a href="{{ path('books_loans_new', {'id':book.id}) }}">Nuevo Préstamo</a></li>
+        {% endif %}
         </ul>
     </div>
     <div class="titulo-tabla">
