@@ -38,7 +38,7 @@ class BooksLoansRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('bl')
         ->where('bl.book_id = :value')
         ->setParameter('value', $value)
-        ->orderBy('bl.logdate', 'ASC')
+        ->orderBy('bl.id', 'ASC')
         ;
 
         return $qb->getQuery()->getResult();
