@@ -1,11 +1,27 @@
 {{ form_start(form) }}
    {{ form_errors(form) }}
-
-    {{ form_row(form.bookName) }}
-    {{ form_row(form.authorName) }}
-    {{ form_row(form.qty) }}
-    {{ form_row(form.bookGenreRel) }}
     
-    <button class="btn">{{ button_label|default('Guardar') }}</button>
-
+    <div class="row">
+    {{ form_label(form.bookName, "Nombre del Libro:") }}
+    {{ form_widget(form.bookName) }}
+    </div>
+    <div class="row">
+    {{ form_label(form.authorName, "Nombre de Autor:") }}
+    {{ form_widget(form.authorName) }}
+    </div>
+    <div class="row">
+    {{ form_label(form.qty, "Cantidad de Libros:") }}
+    {{ form_widget(form.qty) }}
+    </div>
+    <div class="row">
+    {{ form_label(form.bookName, "Género del Libro:") }}
+    {{ form_widget(form.bookGenreRel) }}
+    </div>
+    <div class="menu">
+        <ul>
+            <li>
+        <button class="btn">{{ button_label|default('Guardar') }}</button>
+            </li>
+        </ul>
+    </div>
 {{ form_end(form) }}

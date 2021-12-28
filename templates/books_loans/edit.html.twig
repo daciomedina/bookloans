@@ -7,7 +7,7 @@
 
     {{ include('books_loans/_form.html.twig', {'button_label': 'actualizar'}) }}
 
-    <a href="{{ path('books_loans_index') }}">back to list</a>
+    <a href="{{ path('book_show', {'id':id_book}) }}">regresar</a>
 
     {{ include('books_loans/_delete_form.html.twig') }}
 {% endblock %}

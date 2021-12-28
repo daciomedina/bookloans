@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book{% endblock %}
+{% block title %}Ficha del Libro{% endblock %}
 
 {% block body %}
-    <h1>Ficha de Libro</h1>
+    <h1 class="titulo-tabla">Ficha de Libro</h1>
 
     <table class="table ficha">
         <tbody>
@@ -42,7 +42,9 @@
         <li><a href="{{ path('books_loans_new', {'id':book.id}) }}">Nuevo Préstamo</a></li>
         </ul>
     </div>
-
+    <div class="titulo-tabla">
+        <h2>Movimientos del Libro</h2>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -60,7 +62,7 @@
         <tr>
             <td>{{ bookLoan.id }}</td>
             <td>{{ bookLoan.bookId}}</td>
-            <td>{{ bookLoan.logdate ? bookLoan.logdate|date('Y-m-d') : '' }}</td>
+            <td>{{ bookLoan.logdate ? bookLoan.logdate|date('d-m-Y') : '' }}</td>
             <td>{{ bookLoan.UserDNI }}</td>
             <td>{{ bookLoan.UserName }}</td>
             <td>{{ bookLoan.UserPhone }}</td>
@@ -68,7 +70,7 @@
             <td>
                 <!--a href="{{ path('books_loans_show', {'id': bookLoan.id}) }}">ver</a-->
                 {% if not bookLoan.closed %}
-                <a href="{{ path('books_loans_edit', {'id': bookLoan.id}) }}">editar</a>
+                <a href="{{ path('books_loans_edit', {'id': bookLoan.id,'id_book':bookLoan.bookId.id}) }}">editar</a>
                 {% endif %}
                 {% if not bookLoan.returned and not bookLoan.closed %}
                 <a href="{{ path('books_loans_returned', {'id':bookLoan.id}) }}">Entrega</a>

@@ -1,12 +1,42 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+{% block javascripts %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            $('.js-datepicker').datepicker();
+        });
+    </script>
+{% endblock %}
+
 {{ form_start(form) }}
     {{ form_errors(form) }}
-
-    {{ form_row(form.logdate) }}
-    {{ form_row(form.UserDNI) }}
-    {{ form_row(form.UserName) }}
-    {{ form_row(form.UserPhone) }}
-    {{ form_row(form.book_id) }}
-    
-    <button class="btn">{{ button_label|default('Registrar') }}</button>
+    <div class="row">
+    {{ form_label(form.logdate, "Fecha:") }}
+    {{ form_widget(form.logdate) }}
+    </div>
+    <div class="row">
+    {{ form_label(form.UserDNI,"DNI:")}}
+    {{ form_widget(form.UserDNI) }}
+    </div>
+    {{ form_label(form.UserName, "Nombre:")}}
+    {{ form_widget(form.UserName) }}
+    </div>
+    <div class="row">
+    {{ form_label(form.UserPhone, "Teléfono:")}}
+    {{ form_widget(form.UserPhone) }}
+    </div>
+    <div class="row">
+    {{ form_label(form.book_id, "Libro:")}}
+    {{ form_widget(form.book_id, {value:id_book}) }}
+    </div>
+    <div class="menu">
+        <ul>
+            <li>
+            <button class="btn">{{ button_label|default('Registrar') }}</button>
+            </li>
+        </ul>
+    </div>
     
 {{ form_end(form) }}
