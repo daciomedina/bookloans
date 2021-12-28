@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\BooksLoans;
 use App\Form\BooksLoansType;
 use App\Repository\BooksLoansRepository;
+use App\Repository\BookRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use DateTimeInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,12 +41,16 @@ class BooksLoansController extends AbstractController
             $entityManager->persist($booksLoan);
             $entityManager->flush();
 
-            return $this->redirectToRoute('books_loans_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('book_show', [
+                "id" => $booksLoan->getBookId()->getId()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('books_loans/new.html.twig', [
             'books_loan' => $booksLoan,
             'form' => $form,
+            'id_book' => $request->query->get("id")
+
         ]);
     }
 
@@ -70,8 +74,10 @@ class BooksLoansController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('books_loans_index', [], Response::HTTP_SEE_OTHER);
+            
+            return $this->redirectToRoute('book_show', [
+                "id" => $booksLoan->getBookId()->getId()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('books_loans/edit.html.twig', [
@@ -101,10 +107,10 @@ class BooksLoansController extends AbstractController
         $entityManager->persist($booksLoan2);
         $entityManager->flush();
 
-        return $this->redirectToRoute('books_loans_index', [], Response::HTTP_SEE_OTHER);
-        
-        $entityManager->flush();
-        return $this->redirectToRoute('books_loans_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('book_show', [
+            "id" => $booksLoan->getBookId()->getId()
+        ], Response::HTTP_SEE_OTHER);
+
     }
 
     /**
