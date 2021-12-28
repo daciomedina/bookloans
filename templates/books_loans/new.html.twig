@@ -7,5 +7,5 @@
 
     {{ include('books_loans/_form.html.twig') }}
 
-    <a href="{{ path('books_loans_index') }}">regresar</a>
+    <a href="{{ path('book_show', {'id':id_book}) }}">regresar</a>
 {% endblock %}
