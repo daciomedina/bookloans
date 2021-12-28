@@ -4,7 +4,12 @@
 
 {% block body %}
     <h1>Géneros</h1>
-
+    <div class="menu">
+        <ul>
+            <li><a href="{{ path('book_index')}}">Inicio</a></li>
+            <li><a href="{{ path('books_genre_def_new') }}">Crear Género</a></li>
+        </ul>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -31,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('books_genre_def_new') }}">Crear</a>
+    
 {% endblock %}

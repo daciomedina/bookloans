@@ -3,9 +3,9 @@
 {% block title %}Book{% endblock %}
 
 {% block body %}
-    <h1>Book</h1>
+    <h1>Ficha de Libro</h1>
 
-    <table class="table">
+    <table class="table ficha">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -34,7 +34,15 @@
         </tbody>
     </table>
 
-    <table>
+    <div class="menu">
+        <ul>
+        <li><a href="{{ path('book_index') }}">Inicio</a></li>
+        <li><a href="{{ path('book_edit', {'id': book.id}) }}">modif. Libro</a></li>
+        <li>{{ include('book/_delete_form.html.twig') }}</li>
+        </ul>
+    </div>
+
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -69,9 +77,7 @@
     {% endfor %}
     </table>
 
-    <a href="{{ path('book_index') }}">back to list</a>
+    
 
-    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
-
-    {{ include('book/_delete_form.html.twig') }}
+    
 {% endblock %}

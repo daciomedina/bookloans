@@ -3,22 +3,29 @@
 {% block title %}Book index{% endblock %}
 
 {% block body %}
-    <h1>Book index</h1>
-
-    <form action="{{path('book_search')}}" >
-        <label for="key">Buscar
-        <input name="key" type="text" id="key">
-        </label>
-    </form>
-
-    <table class="table">
+<div class="container">
+    <h1 class="display-2">Book index</h1>
+    <div class="search-container">
+        <form name="book-search" id="book-search" action="{{path('book_search')}}" >
+            <label for="key">Buscar
+            <input name="key" type="text" id="key" placeholder="en Nombre de libro o Autor">
+            </label>
+        </form>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="{{ path('book_new') }}">Nuevo Libro</a></li>
+            <li><a href="{{ path('books_genre_def_index')}}">Ver Géneros</a></li>
+        </ul>
+    </div>
+    <table class="table books">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>BookName</th>
-                <th>AuthorName</th>
-                <th>Qty</th>
-                <th>actions</th>
+                <th>Nombre del Libro</th>
+                <th>Nombre de Autor</th>
+                <th>Cantidad</th>
+                <th>acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +36,19 @@
                 <td>{{ book.authorName }}</td>
                 <td>{{ book.qty }}</td>
                 <td>
-                    <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
-                    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                    <a href="{{ path('book_show', {'id': book.id}) }}">ficha</a>
+                    <a href="{{ path('book_edit', {'id': book.id}) }}">modif</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">no hay registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('book_new') }}">Create new</a>
+    
+
+</div>
 {% endblock %}
