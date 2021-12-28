@@ -1,4 +1,6 @@
-#Instalación
+# Instalación
+
+La típica de cualquier proyecto de Symfony, de todas maneras a saber:
 
 1.- Clonar el repo de github en una carpeta.
 
